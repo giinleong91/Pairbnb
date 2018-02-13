@@ -13,3 +13,15 @@
 	<%= form.label :name %>
 	<%= form.text_field :name%>
 </div>
+
+<div class="age">
+	<%= form.label :age%>
+	<%= form.number_field :age, type: "integer" %>
+</div>
+
+<div class="gender">
+	<%= form.label :gender%>
+	<br>
+	<%= form.radio_button :gender, "female"%>FEMALE	
+	<%= form.radio_button :gender, "male"%>MALE
+</div>
