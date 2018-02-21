@@ -1,0 +1,22 @@
+<h1>All Listing</h1>
+<table border="1">
+<tr>
+<th>NO.</th>
+<th>Title</th>
+<th>Amount of People</th>
+<th>Amenities</th>
+</tr>
+<% @listings.each_with_index do |l, index| %>
+<tr>
+  <td><%= index + 1%></td>
+  <td><%= link_to l.title, listing_path(l) %></td>
+  <td><%= l.amount %></td>
+  <td><%= l.amenities%></td>
+  <td><%= l.user.email %></td>
+  <td><a href="/listings/<%= l.id %>">Book NOW</a></td>
+
+</tr>
+<% end %>
+</table>
+<%= paginate @listings %>
+<%= page_entries_info @listings %>

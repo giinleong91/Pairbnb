@@ -1,0 +1,19 @@
+Filtered : 
+<table width="100%" border="1">
+<tr>
+<th>No.</th>
+<th>Title</th>
+<th>Amount</th>
+<th>Amenities</th>
+</tr>
+<tr>
+<% @listings.each_with_index do |list, index| %>
+<td><%= index + 1%></td>
+<td><%= list.title %></td>
+<td><%= list.amount %></td>
+<td><%= list.amenities %></td> 
+<td><a href="#">Book Now</a></td>
+</tr>
+<% end %>
+</table>
+<%= link_to "Return to homepage", root_path%>

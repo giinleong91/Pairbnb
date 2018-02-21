@@ -1,0 +1,19 @@
+New Listing
+<%= form_for @listing do |f| %>
+<%= f.label :title %>
+<br>
+<%= f.text_field :title %>
+<br>
+Amount of People:
+<br>
+<%= f.select :amount,options_for_select([['1','1'],['2','2'],['3','3'],['4','4'],['5','5']]), {:include_blank => '-select-'} %>
+<br>
+Amenities:
+<br>
+<p><%= f.check_box :amenities, {:multiple => true}, "kitchen", nil %>Kitchen</p>
+<p><%= f.check_box :amenities, {:multiple => true}, "sauna", nil%>Sauna</p>
+<p><%= f.check_box :amenities, {:multiple => true}, "pool", nil %>Pool</p>
+<p><%= f.check_box :amenities, {:multiple => true}, "gym", nil %>Gym</p>
+<br>
+<%= f.submit %>
+<%end%>
