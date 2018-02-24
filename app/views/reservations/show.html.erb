@@ -1,0 +1,19 @@
+<div class="alert alert-success">
+  <%= "Reservation has been successfully made!" %>
+</div>
+
+<% flash.each do |key, value|%>
+  <div class="<% key %>">
+    <%= value %>
+  </div>
+  <% end %>
+
+
+This is your reservation:<br>
+Title = <%= @reservation.listing.title %><br>
+<%= image_tag(@reservation.listing.image_url.to_s) %><br>
+Date = <%= @reservation.start_date %> to
+<%= @reservation.end_date %><br>
+Price = RM <%= @reservation.total_price %><br>
+
+<%= link_to "Make Payment", listing_reservation_braintree_new_path(@listing.id, @reservation.id) %>

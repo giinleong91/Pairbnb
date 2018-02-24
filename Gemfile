@@ -66,3 +66,11 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'sprockets-rails'
 
 gem 'kaminari'
+
+gem "carrierwave"
+
+gem 'mini_magick'
+
+gem "fog-aws"
+
+gem 'braintree'
