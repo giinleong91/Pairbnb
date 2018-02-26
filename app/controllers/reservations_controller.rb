@@ -14,6 +14,7 @@ class ReservationsController < ApplicationController
     @reservation.listing_id = @listing.id
    
     if @reservation.save
+      ReservationMailer.booking_email(current_user, @listing.id, @reservation.id).deliver_now
       redirect_to [@listing,@reservation]
     else
       redirect_to new_listing_reservation_path(@listing)
