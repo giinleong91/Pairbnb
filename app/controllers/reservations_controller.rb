@@ -12,8 +12,12 @@ class ReservationsController < ApplicationController
     @listing = Listing.find(params[:listing_id])
     @reservation = current_user.reservations.new(reservation_params)
     @reservation.listing_id = @listing.id
-   
+    @customer = current_user.id
+    @host = @listing.id
+
     if @reservation.save
+      @reservation_id = @reservation.id
+      ReservationJob.perform_now(@customer, @host, @reservation_id)
       redirect_to [@listing,@reservation]
     else
       redirect_to new_listing_reservation_path(@listing)
