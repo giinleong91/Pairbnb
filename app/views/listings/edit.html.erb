@@ -4,6 +4,8 @@ New Listing
 <br>
 <%= f.text_field :title %>
 <br>
+<%= f.file_field :image %>
+<br>
 Amount of People:
 <br>
 <%= f.select :amount,options_for_select(['1','2','3','4','5']), {:include_blank => '-select-'} %>
@@ -15,6 +17,6 @@ Amenities:
 <p><%= f.check_box :amenities, {:multiple => true}, "pool", nil %>Pool</p>
 <p><%= f.check_box :amenities, {:multiple => true}, "gym", nil %>Gym</p>
 <br>
-<%= f.submit %>
+<%= f.submit "Edit", data: { confirm: 'Confirm to edit?'}%>
 <%= link_to "Cancel Edit", listings_path%>
 <%end%>

@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
 
 	def new
 		@listing = Listing.new
-
+		@price = @listing.group_by(&:price)
 	end
 
 	def index
@@ -15,7 +15,7 @@ class ListingsController < ApplicationController
 	def create
 		@listing = current_user.listings.new(listing_params)
 		if @listing.save
-			redirect_to root_path
+			redirect_to @listing
 		else
 			render "new"
 		end
@@ -44,9 +44,9 @@ class ListingsController < ApplicationController
 
 	def search
 		@listing = if params[:query]
-		Listing.where(title: params[:query])
+			Listing.where(title: params[:query])
 		else
-		Listing.all
+			Listing.all
 	end
 	end
 
@@ -58,15 +58,17 @@ class ListingsController < ApplicationController
 	end
 	end
 
-	def cart
-		@listings = Listing.where(date: params(:date)) 
-	end
+	# def cart
+	# 	@listing = Listing.find(params[:id])
+		
+	# end
 
 	private
 	# def set_listing
 	# 	@listing = Listing.find(params[:id])
 	# end
 	def listing_params
-		params.require(:listing).permit(:title, :amount, :date, :query, amenities: [])
+		params.require(:listing).permit(:title, :amount, :date, :query, :image, :price, amenities: [])
 	end
+
 end

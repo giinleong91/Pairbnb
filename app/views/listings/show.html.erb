@@ -1,28 +1,13 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
 Listing
 <br>
 Title = <%= @listing.title%>
+<br>
+<%= image_tag(@listing.image_url.to_s) %>
 <br>
 Amount of People = <%= @listing.amount%>
 <br>
 Amenities = <%= @listing.amenities%>
 <br>
-<form action="/cart" method="post">
-<h2>Date</h2>
-    <input type="text" id="rangeDate" placeholder="Please select Date" data-input name="date">
+Price = RM <%= @listing.price %>
 <br>
-<button type="submit">Submit</button>
-<button type="reset">Reset</button>
-</form>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
-
-<script>
-$("#rangeDate").flatpickr({
-  mode: 'range',
-  minDate: "today",
-  dateFormat: "Y-m-d"
-})
-</script>
+<%= link_to "Return to Homepage", root_path%>

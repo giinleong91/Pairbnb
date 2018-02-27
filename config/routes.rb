@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
-  get 'reservations/new'
 
-  get 'reservations/create'
-
-  get 'reservations/index'
-
-  resources :reservations
+  get 'braintree/new'
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -17,7 +12,13 @@ Rails.application.routes.draw do
     
   end
   
-  resources :listings
+  resources :listings do
+    resources :reservations do
+      get 'braintree/new'
+        post 'braintree/checkout'
+    end
+    resources :images
+  end
 
   concern :paginatable do
   get '(page/:page)', action: :index, on: :collection, as: ''
@@ -31,8 +32,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get "/search" => "listings#search"
+
+  # post 'braintree/checkout'
+
   get "/filter" => "listings#filter"
-  post "/cart" => "listings#cart"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   
   root "welcome#index"
