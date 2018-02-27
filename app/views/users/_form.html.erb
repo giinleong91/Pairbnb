@@ -1,0 +1,27 @@
+<div class="text-field">
+  <%= form.label :email %>
+  <%= form.text_field :email, type: 'email' %>
+</div>
+
+<div class="password-field">
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+</div>
+
+
+<div class="name">
+	<%= form.label :name %>
+	<%= form.text_field :name%>
+</div>
+
+<div class="age">
+	<%= form.label :age%>
+	<%= form.number_field :age, type: "integer" %>
+</div>
+
+<div class="gender">
+	<%= form.label :gender%>
+	<br>
+	<%= form.radio_button :gender, "female"%>FEMALE	
+	<%= form.radio_button :gender, "male"%>MALE
+</div>
