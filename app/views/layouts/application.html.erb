@@ -9,7 +9,18 @@
   </head>
 
   <body>
-  Hello and welcome
+  <h1><%= link_to "Airbnb", root_path%></h1>
+  <br>
+  <% if signed_in? %>
+  <%#byebug%>
+  <%= current_user.email %>
+  <%= button_to "Sign out", sign_out_path, method: :delete %>
+    <% else %>
+  <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+  OR 
+  <%= link_to "Sign in", sign_in_path %>
+  <% end %>
+  <%= link_to "Reservations", reservations_new_path%>
   <br>
     <%= yield %>
   <footer>

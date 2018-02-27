@@ -1,6 +1,26 @@
-<% if signed_in? %>
-  <%= current_user.email %>
-  <%= button_to "Sign out", sign_out_path, method: :delete %>
-    <% else %>
-  <%= link_to "Sign in with Facebook", "/auth/facebook" %>
-  <% end %>
+Listing
+<br>
+<a href="/listings/new">Create New Listing</a>
+<br>
+<%= form_tag '/search', method: :get do %>
+<%= text_field_tag :query %>
+<%= submit_tag 'Search' %>
+<% end %>
+<table>
+  <tr>
+    <th>Filter
+    <p> 
+    <%= form_tag '/filter', method: :get do %>
+    <%= check_box_tag 'amenities[]', "kitchen" %>Kitchen</p>
+    <p><%= check_box_tag 'amenities[]', "sauna" %>Sauna</p> 
+    <p><%= check_box_tag 'amenities[]', "pool" %>Pool</p>
+    <p><%= check_box_tag 'amenities[]', "gym" %>Gym</p>
+    <%= submit_tag 'Submit' %>
+    <% end %>
+  </tr>
+  <tr>
+    <td>
+    <%= render partial: "listings/index" %>
+    </td>
+  </tr>
+</table>
