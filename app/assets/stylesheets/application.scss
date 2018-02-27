@@ -10,16 +10,51 @@
 
 .row-fluid{
   float: left;
+  text-align: left;
 }
 
 .listing{
   text-align: center;
 }
 
+// listing form
 .form-center{
   margin: 0 auto;
+  position: absolute;
+  padding: 0 5%;
 }
 
+// listing all
+.listing-index{
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.listing-index td{
+  border: 1px solid black;
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  height: 250px;
+}
+
+.list-center{
+  margin: 0 auto;
+  position: absolute;
+  padding: 0 5%;
+}
+
+.paginate{
+  text-align: center;
+}
+
+.pagination{
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
 
 // Braintree setup
 .hosted-field {
