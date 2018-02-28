@@ -16,4 +16,6 @@ Date = <%= @reservation.start_date %> to
 <%= @reservation.end_date %><br>
 Price = RM <%= @reservation.total_price %><br>
 
+<%= link_to "Remove Reservation", listing_reservation_path(@listing.id), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
+<br>
 <%= link_to "Make Payment", listing_reservation_braintree_new_path(@listing.id, @reservation.id) %>

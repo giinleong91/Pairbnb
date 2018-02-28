@@ -1,19 +1,22 @@
-Filtered : 
-<table width="100%" border="1">
-<tr>
-<th>No.</th>
-<th>Title</th>
-<th>Amount</th>
-<th>Amenities</th>
-</tr>
-<tr>
-<% @listings.each_with_index do |list, index| %>
-<td><%= index + 1%></td>
-<td><%= list.title %></td>
-<td><%= list.amount %></td>
-<td><%= list.amenities %></td> 
-<td><a href="#">Book Now</a></td>
-</tr>
-<% end %>
-</table>
-<%= link_to "Return to homepage", root_path%>
+<h1 class="listing">Filtered Result: <%=@listings.count%></h1>
+<table class="listing-index">
+    <tbody>
+  
+     <% @listings.each do |listing| %>
+       <td>
+     <%= link_to listing.title, listing_path(listing) %><br>
+     <%= image_tag(listing.image_url(:thumb).to_s) %><br>
+     <%= listing.city %><br>
+     <%= listing.amount %><br>
+     <%= listing.amenities%><br>
+     <%= listing.user.email %><br>
+     RM <%= listing.price %><br>
+     <%= link_to "Book Now", new_listing_reservation_path(listing.id)%><br>
+     <% end %>
+     </td>
+     </tbody>
+    </table>
+     </div>
+  </div> 
+</div>
+<p class="listing"> <%= link_to "Return to homepage", root_path%></p>

@@ -2,30 +2,13 @@
 <h3>New Listing</h3>
 
 <div class="form-group">
+<%= form_for @listing do |form| %>
+  <%= render partial: '/listings/form', object: form %>
 
-<%= form_for @listing do |f| %>
-<%= f.label :title %>
-<br>
-<%= f.text_field :title %>
-<br>
-<%= f.label :image %>
-<br>
-<%= f.file_field :image %>
-<br>
-<br>
-Amount of People:
-<br>
-<%= f.select :amount,options_for_select([['1','1'],['2','2'],['3','3'],['4','4'],['5','5']]), {:include_blank => '-select-'} %>
-<br>
-<%= f.label :amenities %>
-<br>
-<p><%= f.check_box :amenities, {:multiple => true}, "kitchen", nil %>Kitchen</p>
-<p><%= f.check_box :amenities, {:multiple => true}, "sauna", nil%>Sauna</p>
-<p><%= f.check_box :amenities, {:multiple => true}, "pool", nil %>Pool</p>
-<p><%= f.check_box :amenities, {:multiple => true}, "gym", nil %>Gym</p>
-<%= f.label :price %>  
-<p>RM <%= f.text_field :price %></p> 
-<%= f.submit %>
+ 
+<div class="submit-field">
+      <%= form.submit "Submit", data: { confirm: 'Confirm to create?'} %>
+    </div>
 <%end%>
 </div>
 </div>
