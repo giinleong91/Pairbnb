@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
 
   before_action :require_login, except: [:new]
+
   
 
   def new
@@ -15,7 +16,7 @@ class ReservationsController < ApplicationController
     @customer = current_user.id
     @host = @listing.id
 
-    if @reservation.save
+    if @reservation.save!
       @reservation_id = @reservation.id
       ReservationJob.perform_now(@customer, @host, @reservation_id)
       redirect_to [@listing,@reservation]
@@ -24,8 +25,10 @@ class ReservationsController < ApplicationController
     end
   end
 
+
   def index
-    @reservation = Reservation.all
+    @listing = Listing.find(params[:listing_id])
+    @reservations = Reservation.all
   end
 
   def show
@@ -33,7 +36,16 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
   end
 
+  def destroy
+    @listing = Listing.find(params[:listing_id])
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_to root_path
+  end
+
 private
+
+
   def reservation_params
     params.require(:reservation).permit(:user_id, :listing_id, :start_date, :end_date, :total_price)
   end

@@ -1,10 +1,10 @@
 <h1>Reservation#index</h1>
 <p>Find me in app/views/reservation/index.html.erb</p>
-<%= @reservation.each do |r|%>
+<%= @reservations.each do |reservation| %>
 <%= @reservation.user_id %>
-<%= @reservation.listing_id%>
-<%= @reservation.start_date%>
-<%= @reservation.end_date%>
-<%= @reservation.total_amount%>
+<%= @reservation.listing_id %>
+<%= @reservation.start_date %>
+<%= @reservation.end_date %>
+<%= @reservation.total_amount %>
 <%= end %>
 

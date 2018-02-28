@@ -1,0 +1,30 @@
+
+<p> <%= form.label :title %>
+<br>
+<%= form.text_field :title %>
+</p>
+<p>
+<%= form.file_field :image %>
+</p>
+<p>
+  <%= form.label :city%>
+  <br>
+  <%= form.text_field :city %>
+</p>
+<p>
+Amount of People:
+<br>
+<%= form.select :amount,options_for_select(['1','2','3','4','5']), {:include_blank => '-select-'} %>
+</p>
+<p>
+Amenities:
+<br>
+<p><%= form.check_box :amenities, {:multiple => true}, "kitchen", nil %>Kitchen</p>
+<p><%= form.check_box :amenities, {:multiple => true}, "sauna", nil%>Sauna</p>
+<p><%= form.check_box :amenities, {:multiple => true}, "pool", nil %>Pool</p>
+<p><%= form.check_box :amenities, {:multiple => true}, "gym", nil %>Gym</p>
+</p>
+<p>
+<%= form.label :price %>  
+</p>
+<p>RM <%= form.text_field :price %></p> 

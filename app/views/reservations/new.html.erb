@@ -6,10 +6,13 @@ Title = <%= @listing.title %>
 <br>
 <%= image_tag(@listing.image_url.to_s) %>
 <br>
+City = <%= @listing.city %>
+<br>
 Amount of People = <%= @listing.amount%>
 <br>
 Amenities = <%= @listing.amenities%>
 <br>
+Price = RM <%= @listing.price %> per night
 <%= form_for [@listing,@reservation] do |form| %>
 <p> Date: <%= form.date_field :start_date, min: Time.now %>
     to <%= form.date_field :end_date, min: Time.now, max: Time.now + 120.days %></p>

@@ -80,3 +80,7 @@ gem 'mail'
 gem "letter_opener", :group => :development
 
 gem 'sidekiq'
+
+gem 'foreman'
+
+gem 'rails_12factor'

@@ -2,15 +2,26 @@
 
 <%= link_to "Create New Listing", new_listing_path %>
 <div class="search-bar">
-<%= form_tag '/search', method: :get do %>
-<%= text_field_tag :query %>
-<%= submit_tag 'Search' %>
+<%#= form_tag '/search', method: :get do %>
+<%#= text_field_tag :query, "Search Title" %>
+<%#= submit_tag 'Search' %>
+<%# end %>
+
+
+<%= form_tag("/search", method: :post) do %>
+  <%= label_tag(:title, "Search for:") %>
+  <%= text_field_tag :title %>
+  <%= submit_tag("Search") %>
 <% end %>
+
+
 
 <div class="sort-by">
 Sort by 
-<%= sort "price" %>,
-<%= sort "title" %>
+<%= link_to "Title ASC", a_title_listings_path %>,
+<%= link_to "Title DESC", d_title_listings_path %>,
+<%= link_to "Price ASC", a_price_listings_path %>,
+<%= link_to "Price DESC", d_price_listings_path %>
 </div>
 
 
@@ -23,23 +34,29 @@ Sort by
 <%= submit_tag 'Submit' %>
 <% end %>
 </div>
-</div>
 
 <br>
-<div class="d-flex justify-content-center">
-  <div class="align-baseline">
-
+    <table class="listing-index">
+    <tbody>
+  
      <% @listings.each do |listing| %>
+       <td>
      <%= link_to listing.title, listing_path(listing) %><br>
      <%= image_tag(listing.image_url(:thumb).to_s) %><br>
+     <%= listing.city %><br>
      <%= listing.amount %><br>
      <%= listing.amenities%><br>
      <%= listing.user.email %><br>
      RM <%= listing.price %><br>
      <%= link_to "Book Now", new_listing_reservation_path(listing.id)%><br>
      <% end %>
+     </td>
+     </tbody>
+    </table>
      </div>
   </div> 
 </div>
+<div class="paginate">
 <%= paginate @listings %>
-<%= page_entries_info @listings %> -->
+<%= page_entries_info @listings %>
+</div>

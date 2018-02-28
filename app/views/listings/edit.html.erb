@@ -1,22 +1,12 @@
+<div class="form-center">
 Edit Listing
-<%= form_for @listing do |f| %>
-<%= f.label :title %>
-<br>
-<%= f.text_field :title %>
-<br>
-<%= f.file_field :image %>
-<br>
-Amount of People:
-<br>
-<%= f.select :amount,options_for_select(['1','2','3','4','5']), {:include_blank => '-select-'} %>
-<br>
-Amenities:
-<br>
-<p><%= f.check_box :amenities, {:multiple => true}, "kitchen", nil %>Kitchen</p>
-<p><%= f.check_box :amenities, {:multiple => true}, "sauna", nil%>Sauna</p>
-<p><%= f.check_box :amenities, {:multiple => true}, "pool", nil %>Pool</p>
-<p><%= f.check_box :amenities, {:multiple => true}, "gym", nil %>Gym</p>
-<br>
-<%= f.submit "Edit", data: { confirm: 'Confirm to edit?'}%>
-<%= link_to "Cancel Edit", listings_path%>
-<%end%>
+
+<%= form_for @listing do |form| %>
+    <%= render partial: '/listings/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit "Edit", data: { confirm: 'Confirm to edit?'} %>
+    </div>
+    <%= link_to "Cancel Edit", listings_path%>
+<% end %>
+</div>

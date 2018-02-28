@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'braintree/new'
 
+  get 'listings/all' => "listings#indexall"
+
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
@@ -13,6 +15,13 @@ Rails.application.routes.draw do
   end
   
   resources :listings do
+    collection  do
+      get :a_title
+      get :d_title
+      get :a_price
+      get :d_price
+      get :city
+    end
     resources :reservations do
       get 'braintree/new'
         post 'braintree/checkout'
@@ -31,7 +40,7 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get "/search" => "listings#search"
+  post "/search" => "listings#search"
 
   # post 'braintree/checkout'
 
