@@ -12,8 +12,8 @@ class Listing < ApplicationRecord
   scope :d_title, -> { order(title: :desc) }
   scope :a_price, -> { order(price: :asc) }
   scope :d_price, -> { order(price: :desc) }
-  scope :city, -> (argument) { where("city ILIKE ?", "%#{argument}%")}
-  scope :title, -> (argument) { where("title ILIKE ?", "%#{argument}%")}
+  scope :city, -> (search) { where("city ILIKE ?", "%#{argument}%")}
+  scope :search_title, -> (argument) { where("title ILIKE ?", "%#{argument}%")}
 
   scope :price, -> (number) { where("price >= ?", "%#{number}%")}
 
