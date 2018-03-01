@@ -1,4 +1,4 @@
-<h1 class="listing">Search Result: <%=@listings.count%></h1>
+<h1 class="listing">Search Result: <%=@listing.count%></h1>
 
 
 <div class="search-bar">
@@ -19,7 +19,7 @@
     <table class="listing-index">
     <tbody>
   
-     <% @listings.each do |listing| %>
+     <% @listing.each do |listing| %>
        <td>
      <%= link_to listing.title, listing_path(listing) %><br>
      <%= image_tag(listing.image_url(:thumb).to_s) %><br>
@@ -37,6 +37,6 @@
   </div> 
 </div>
 <div class="paginate">
-<%= paginate @listings %>
-<%= page_entries_info @listings %>
+<%= paginate @listing %>
+<%= page_entries_info @listing %>
 </div>

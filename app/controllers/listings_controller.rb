@@ -76,15 +76,24 @@ class ListingsController < ApplicationController
 		redirect_to listings_path
 	end
 
-	def search
-		# @listing = Listing.find(params[:city])
-		@listings = Listing.where(nil)
-		filtering_params(params).each do |key, value|
-			@listings = @listings.public_send(key,value) if value.present?
-		@listings = Kaminari.paginate_array(@listings).page(params[:page])
-		end
+	# def search
+	# 	# @listing = Listing.find(params[:city])
+	# 	@listings = Listing.where(nil)
+	# 	filtering_params(params).each do |key, value|
+	# 		@listings = @listings.public_send(key,value) if value.present?
+	# 	@listings = Kaminari.paginate_array(@listings).page(params[:page])
+	# 	end
 
-		render template: "listings/search"
+	# 	render template: "listings/search"
+	# end
+
+	def search
+		@listing = Listing.search_title(params[:search])
+		respond_to do |format|
+			format.json {	render json:@listing }
+			format.html { render "listings/search" }
+		 	@listing = Kaminari.paginate_array(@listing).page(params[:page])
+		end
 	end
 
 	# def search
@@ -113,9 +122,9 @@ class ListingsController < ApplicationController
   #   params[:direction] || "asc"
   # end
 
-  def filtering_params(params)
-  	params.slice(:title, :price, :amount, :city)  	
-  end
+  # def filtering_params(params)
+  # 	params.slice(:title, :price, :amount, :city)  	
+  # end
 
 	def listing_params
 		params.require(:listing).permit(:title, :amount, :date, :query, :image, :price, :city, amenities: [])
