@@ -15,7 +15,7 @@ class Listing < ApplicationRecord
   scope :city, -> (search) { where("city ILIKE ?", "%#{argument}%")}
   scope :search_title, -> (argument) { where("title ILIKE ?", "%#{argument}%")}
 
-  scope :price, -> (number) { where("price >= ?", "%#{number}%")}
+  scope :price, -> (min, max) { where('price >= ? and price <=?', min, max)}
 
   # scope :amenities -> (amenities) { where("amenities like ?", "#{amenities}%")}
   # scope :start_with, -> (amount) { where("new like ?", "#{amount}") }

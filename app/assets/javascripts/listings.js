@@ -1,8 +1,8 @@
 
 
 document.addEventListener("DOMContentLoaded", function(event){
-console.log("life")
 
+// jquery
 $("#search-form").keypress(function(e){
   // e.preventDefault();
   
@@ -23,6 +23,7 @@ $("#search-form").keypress(function(e){
   });
 })
 
+// javascript
 // var city_input = document.getElementById("search")
 
 // if (city_input){
