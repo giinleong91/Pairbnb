@@ -89,10 +89,11 @@ class ListingsController < ApplicationController
 
 	def search
 		@listing = Listing.search_title(params[:search])
-		respond_to do |format|
-			format.json {	render json:@listing }
-			format.html { render "listings/search" }
-		 	@listing = Kaminari.paginate_array(@listing).page(params[:page])
+				respond_to do |format|
+					format.json {	render json: @listing }
+					format.html { render "listings/search"}
+					format.js 
+		@listing = Kaminari.paginate_array(@listing).page(params[:page])
 		end
 	end
 
@@ -107,6 +108,10 @@ class ListingsController < ApplicationController
 	def filter
 		@listings = if params[:amenities]
 		Listing.where("amenities @> ARRAY[?]::text[]",params[:amenities])
+		elsif
+		@pricemin = params[:min]
+		@pricemax = params[:max]
+		@listing = Listing.price(@pricemin, @pricemax)
 		else
 		Listing.all 
 		end

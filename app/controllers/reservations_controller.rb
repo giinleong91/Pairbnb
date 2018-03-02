@@ -9,6 +9,11 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
   end
 
+  def index
+    @reservations = current_user.reservations.all
+    # @listing = Listing.find(params[:listing_id])
+  end
+
   def create
     @listing = Listing.find(params[:listing_id])
     @reservation = current_user.reservations.new(reservation_params)
@@ -16,19 +21,15 @@ class ReservationsController < ApplicationController
     @customer = current_user.id
     @host = @listing.id
 
-    if @reservation.save!
+    if @reservation.save
       @reservation_id = @reservation.id
       ReservationJob.perform_now(@customer, @host, @reservation_id)
+      flash[:ressave] = "Successfully made reservation!"
       redirect_to [@listing,@reservation]
     else
       redirect_to new_listing_reservation_path(@listing)
+      flash[:notice] = "Dates overlaps! Please select another date"
     end
-  end
-
-
-  def index
-    @listing = Listing.find(params[:listing_id])
-    @reservations = Reservation.all
   end
 
   def show
@@ -40,7 +41,8 @@ class ReservationsController < ApplicationController
     @listing = Listing.find(params[:listing_id])
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
-    redirect_to root_path
+    redirect_to reservations_all_path
+    # redirect_to root_path
   end
 
 private

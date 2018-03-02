@@ -1,0 +1,5 @@
+console.log("hi");
+$(".container").html("")
+<% @listings.each do |listing|%>
+  $(".container").append("<p><%= listing.id.to_s + listing.title %></p>")
+<% end %>

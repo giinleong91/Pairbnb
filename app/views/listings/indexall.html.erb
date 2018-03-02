@@ -13,7 +13,7 @@
 <% @listings.each_with_index do |l, index| %>
 <tr>
   <td>
-  <%= link_to l.title, listing_path(l) %>
+  <%= link_to l.title, listing_reservations_path(l) %>
   </td>
   <td>
   <%= l.amount %>
@@ -25,7 +25,7 @@
   RM <%= l.price%>
   </td>
   <td>
-  <%= l.user.email %>
+  <%= link_to l.user.email, listing_reservations_path(l) %>
   </td>
   <td>
   <% if l.user.id == current_user.id %>

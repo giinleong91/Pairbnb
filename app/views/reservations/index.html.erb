@@ -1,10 +1,32 @@
-<h1>Reservation#index</h1>
-<p>Find me in app/views/reservation/index.html.erb</p>
-<%= @reservations.each do |reservation| %>
-<%= @reservation.user_id %>
-<%= @reservation.listing_id %>
-<%= @reservation.start_date %>
-<%= @reservation.end_date %>
-<%= @reservation.total_amount %>
-<%= end %>
-
+<table>
+<thead>
+  <th>Start date</th>
+  <th>End Date</th>
+  <th>User</th>
+  <th>Listing</th>
+  <th>Total Price</th>
+  <th>Delete</th>
+</thead>
+<tbody>
+<% @reservations.each do |reservation|%>
+<tr>
+<td>
+<%= reservation.start_date %>
+</td>
+<td>
+<%= reservation.end_date %>
+</td>
+<td>
+<%= reservation.user.email %>
+</td>
+<td>
+<%= reservation.listing.title %>
+</td>
+<td>
+<%= reservation.total_price %>
+</td>
+<td><%= link_to "Remove", listing_reservation_path(reservation.listing_id, reservation.id,), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %></td>
+</tr>
+<% end %>
+</tbody>
+</table>

@@ -1,7 +1,7 @@
 <h1 class="listing">All Listing</h1>
 
 <%= link_to "Create New Listing", new_listing_path %>
-<div class="search-bar">
+<!-- <div class="search-bar"> -->
 <%#= form_tag '/search', method: :get do %>
 <%#= text_field_tag :query, "Search Title" %>
 <%#= submit_tag 'Search' %>
@@ -13,8 +13,14 @@
   <%#= text_field_tag :title %>
   <%#= submit_tag("Search") %>
 <%# end %>
-
-   
+ <div class="search-bar">
+      <%= form_tag search_path, id: "search-form" do %>
+        <%= label_tag "search" %>
+        <%= text_field_tag "search", nil, placeholder: "Search By Title" , list: "list" %>
+        <datalist id="list"></datalist>
+      <% end %>
+  </div>
+ 
 </div>
 
 
@@ -26,18 +32,21 @@ Sort by
 <%= link_to "Price DESC", d_price_listings_path %>
 </div>
 
-
 <div class="row-fluid"><strong>Filter</strong>
-<%= form_tag '/filter', method: :get do %>
+<%= form_tag filter_path, method: :get do %>
 <%= check_box_tag 'amenities[]', "kitchen" %>Kitchen <br>
 <%= check_box_tag 'amenities[]', "sauna" %>Sauna <br>
 <%= check_box_tag 'amenities[]', "pool" %>Pool <br>
 <%= check_box_tag 'amenities[]', "gym" %>Gym <br>
-<%= submit_tag 'Submit' %>
+<br>
+<%= text_field_tag :min, @pricemin, placeholder: "Min...", class: "filterprice" %>
+<br>
+<%= text_field_tag :max, @pricemax, placeholder: "Max...", class: "filterprice" %>
+<br>
+<%= submit_tag "Submit" %>
 <% end %>
 </div>
 
-<br>
     <table class="listing-index">
     <tbody>
   
@@ -50,7 +59,7 @@ Sort by
      <%= listing.amenities%><br>
      <%= listing.user.email %><br>
      RM <%= listing.price %><br>
-     <%= link_to "Book Now", new_listing_reservation_path(listing.id)%><br>
+     <%= button_to "Book Now", new_listing_reservation_path(listing.id), method: :get %><br>
      <% end %>
      </td>
      </tbody>
